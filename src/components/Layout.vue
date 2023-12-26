@@ -4,7 +4,7 @@ import Navbar from "./Navbar.vue"
 
 <template>
   <div>
-    <Navbar></Navbar>
+    <Navbar />
     <main>
       <slot></slot>
     </main>

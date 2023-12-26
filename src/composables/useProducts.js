@@ -1,10 +1,48 @@
-import { onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import ky from 'ky';
+import { SORT_BY } from "./sortByTypes";
+import { paginate } from "../utils/utils";
+
+
+const isProductsLoading = ref(false);
+const fetchedProducts = ref([]);
+const currentPage = ref(1);
+const sortBy = ref(SORT_BY.MOST_RECENT);
+const products = computed(() => {
+  if (sortBy.value === SORT_BY.MOST_RECENT) {
+    return paginate(fetchedProducts.value, 13, currentPage.value);
+  }
+
+  if (sortBy.value === SORT_BY.LOWEST_PRICE) {
+    return paginate(
+      [...fetchedProducts.value].sort((productA, productB) => productA.cost - productB.cost),
+      13,
+      currentPage.value
+    )
+  }
+
+  if (sortBy.value === SORT_BY.HIGHEST_PRICE) {
+    return paginate(
+      [...fetchedProducts.value].sort((productA, productB) => productB.cost - productA.cost),
+      13,
+      currentPage.value
+    );
+  }
+})
+
+const next = () => {
+  currentPage.value = currentPage.value + 1;
+}
+
+const previous = () => {
+  currentPage.value = currentPage.value - 1;
+}
+
+const numberOfPages = computed(() => {
+  return Math.ceil(fetchedProducts.value.length / 13);
+})
 
 export default function useProducts() {
-  const isProductsLoading = ref(false);
-  const products = ref([]);
-
   const getAuthHeaders = () => {
     return {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTg5YTU4NDM4YTk5OTAwMTlmNjM2MjgiLCJpYXQiOjE3MDM1MTk2MjB9.S-oKu3Y_Y_mV0DY5cj9K0YkOGos6-J8J3QHA0sYJjB4'
@@ -21,19 +59,35 @@ export default function useProducts() {
     return await response.json();
   }
 
-  onMounted(async () => {
+
+  const fetch = async () => {
     isProductsLoading.value = true;
     try {
-      products.value = await loadProducts();
+      fetchedProducts.value = await loadProducts();
     } catch (error) {
       // handle errors
     } finally {
       isProductsLoading.value = false;
     }
-  })
+  }
+
+  const updateSort = (sortType) => {
+    if (sortType === sortBy.value) return;
+    if (!Object.values(SORT_BY).includes(sortType)) return;
+
+    sortBy.value = sortType;
+  }
+
 
   return {
     isProductsLoading,
-    products
+    products,
+    fetch,
+    currentPage,
+    sortBy,
+    updateSort,
+    next,
+    previous,
+    numberOfPages
   }
 }
