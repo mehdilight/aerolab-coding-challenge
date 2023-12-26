@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from 'vue';
+import useUser from '../../composables/useUser';
 const props = defineProps({
   product: {
     type: Object,
@@ -6,6 +8,14 @@ const props = defineProps({
   }
 });
 
+const {authenticatedUser, isLoadingUser} = useUser();
+//const {} = useRedeem();
+
+const isAbleToRedeemTheProduct = computed(() => {
+  if (isLoadingUser.value) return false;
+  
+  return authenticatedUser.value.points >= props.product.cost;
+})
 </script>
 <template>
   <section class="product-card">
@@ -16,7 +26,7 @@ const props = defineProps({
     <h3 class="product-card__heading">
       {{ product.name }}
     </h3>
-    <div class="redeem-section">
+    <div class="redeem-section" :v-if="isAbleToRedeemTheProduct">
       <div class="redeem-price">
         <span>
           {{ product.cost }}

@@ -1,15 +1,11 @@
 import { ref } from "vue";
 import ky from 'ky';
+import { getAuthHeaders } from "../utils/utils";
 
 const isLoadingUser = ref(false);
 const authenticatedUser = ref({});
 
-export default function useProducts() {
-  const getAuthHeaders = () => {
-    return {
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTg5YTU4NDM4YTk5OTAwMTlmNjM2MjgiLCJpYXQiOjE3MDM1MTk2MjB9.S-oKu3Y_Y_mV0DY5cj9K0YkOGos6-J8J3QHA0sYJjB4'
-    }
-  }
+export default function useUser() {
 
   const loadUser = async () => {
     const response = ky.get('https://coding-challenge-api.aerolab.co/user/me', {
@@ -32,9 +28,14 @@ export default function useProducts() {
     }
   }
 
+  const refetchUser = async () => {
+    await fetch();
+  }
+
   return {
     authenticatedUser,
     isLoadingUser,
-    fetch
+    fetch,
+    refetchUser
   }
 }

@@ -1,2 +1,7 @@
 @import './variables';
 @import './mixins';
+
+
+.flex-grow {
+    flex-grow: 1;
+}

@@ -1,8 +1,7 @@
 import { computed, ref } from "vue";
 import ky from 'ky';
 import { SORT_BY } from "./sortByTypes";
-import { paginate } from "../utils/utils";
-
+import { getAuthHeaders, paginate } from "../utils/utils";
 
 const isProductsLoading = ref(false);
 const fetchedProducts = ref([]);
@@ -43,12 +42,6 @@ const numberOfPages = computed(() => {
 })
 
 export default function useProducts() {
-  const getAuthHeaders = () => {
-    return {
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTg5YTU4NDM4YTk5OTAwMTlmNjM2MjgiLCJpYXQiOjE3MDM1MTk2MjB9.S-oKu3Y_Y_mV0DY5cj9K0YkOGos6-J8J3QHA0sYJjB4'
-    }
-  }
-
   const loadProducts = async () => {
     const response = ky.get('https://coding-challenge-api.aerolab.co/products', {
       headers: {
@@ -77,7 +70,6 @@ export default function useProducts() {
 
     sortBy.value = sortType;
   }
-
 
   return {
     isProductsLoading,
