@@ -3,6 +3,7 @@
     padding: 284px 0 48px;
     background-position: top left;
     background-size: cover;
+    margin-bottom: 65px;
 
     &__heading {
         font-size: 64px;
@@ -37,6 +38,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-bottom: 24px;
+    margin-bottom: 30px;
+    border-bottom: solid 1px #d9d9d9;
 
     .left-section {
         display: flex;
@@ -57,9 +61,83 @@
 .sort-by {
     display: block;
     color: #a3a3a3;
-    padding: 22px 22px 22px 22px;
+    padding: 0 22px 0 22px;
 }
 
 .paginations .pagination-item:first-child {
     margin-right: 12px;
+}
+
+.products-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.product-card {
+    box-shadow:2px 2px 4px 0 rgba(0,0,0,0.10);
+    padding: 24px;
+    background-color: white;
+    position: relative;
+    img {
+        width: 100%;
+    }
+
+    .product-card__category {
+        display: block;
+        border-top: 1px solid #d9d9d9;
+        padding-top: 19px;
+        font-size: 16px;
+        color: #a3a3a3;
+        margin-bottom: 2px;
+    }
+
+    .product-card__heading {
+        font-size: 18px;
+        color: #616161;
+    }
+    
+    .redeem-section {
+        padding: 24px;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(-180deg, #0ad4faa8 0%, #25bbf1fa 100%);
+    }
+
+    .redeem-button {
+        background-color: white;
+        color:#616161;
+        font-size: 18px;
+        text-align: center;
+        padding: 11px 0;
+        border-radius: 100px;
+    }
+
+    .redeem-price {
+        margin-top: 12px;
+        font-size:36px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & > *:first-child {
+            margin-right: 11px;
+        }
+        & > *:last-child {
+            display: flex;
+        }
+    }
+
+    &:hover {
+        .redeem-section {
+            display: flex;
+        }
+    }
 }

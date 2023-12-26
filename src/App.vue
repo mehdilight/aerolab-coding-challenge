@@ -1,7 +1,11 @@
 <script setup>
 import Layout from './components/Layout.vue';
 import SortHeader from './modules/home/SortHeader.vue';
+import ProductCard from './modules/home/ProductCard.vue';
+import useProducts from './composables/useProducts';
 
+
+const {isProductsLoading, products} = useProducts();
 
 </script>
 
@@ -14,8 +18,14 @@ import SortHeader from './modules/home/SortHeader.vue';
         </h1>
       </div>
     </section>
-    <section class="container">
+    <div v-if="isProductsLoading">
+      loading ...
+    </div>
+    <section v-else class="container">
       <SortHeader />
+      <section class="products-grid">
+        <ProductCard v-for="product in products" :product="product" :key="product._id" />
+      </section>
     </section>
   </Layout>
 </template>
