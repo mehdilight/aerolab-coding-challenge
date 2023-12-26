@@ -1,3 +1,8 @@
+<script setup>
+import useUser from '../composables/useUser';
+
+const { authenticatedUser, isLoadingUser } = useUser();
+</script>
 <template>
   <header class="navbar">
     <a href="/">
@@ -20,11 +25,14 @@
         </g>
       </svg>
     </a>
-    <div class="navbar__section navbar__section--right">
-      <span class="navbar__username">John Kite</span>
+    <div v-if="isLoadingUser">
+      loading...
+    </div>
+    <div v-else class="navbar__section navbar__section--right">
+      <span class="navbar__username">{{ authenticatedUser.name }}</span>
       <span class="navbar__points">
         <span>
-          3000
+          {{ authenticatedUser.points }}
         </span>
         <svg class="navbar__points__coin" width="34px" height="34px" viewBox="0 0 34 34" version="1.1"
           xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

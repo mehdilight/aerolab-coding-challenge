@@ -3,10 +3,18 @@ import Layout from './components/Layout.vue';
 import SortHeader from './modules/home/SortHeader.vue';
 import ProductCard from './modules/home/ProductCard.vue';
 import useProducts from './composables/useProducts';
+import useUser from './composables/useUser';
+
+import { onMounted } from 'vue';
 
 
-const {isProductsLoading, products} = useProducts();
+const {isProductsLoading, products, fetch: fetchProducts} = useProducts();
+const {fetch: fetchUser} = useUser();
 
+onMounted(async () => {
+  fetchProducts();
+  fetchUser()
+})
 </script>
 
 <template>
