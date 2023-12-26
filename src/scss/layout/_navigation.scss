@@ -1,0 +1,32 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.37rem 2.62rem;
+
+    &__points {
+        display: flex;
+        align-items: center;
+        background-color: #ededed;
+        padding: 3px 13px;
+        border-radius: 8px;
+        font-size: 24px;
+        &__coin {
+            width: 24px;
+            height: 24px;
+            margin-left: 11px;
+        }
+    }
+
+    &__section--right {
+        display: flex;
+        align-items: center;
+        & > *:last-child {
+            margin-left: 18px;
+        }
+    }
+
+    &__username {
+        font-size:24px;
+    }
+}

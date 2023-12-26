@@ -1,0 +1,65 @@
+.hero {
+    background-image: url("/assets/header-x2.png");
+    padding: 284px 0 48px;
+    background-position: top left;
+    background-size: cover;
+
+    &__heading {
+        font-size: 64px;
+        color: white;
+    }
+}
+
+.sort-by-buttton {
+    --background-color: #ededed;
+    --text-color: #a3a3a3;
+    font-size: 24px;
+    letter-spacing: -0.15px;
+    border-radius: 100px;
+    padding: 2px 24px;
+    line-height: 48px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    &--active {
+        background-color: var(--primary-color);
+        color: white;
+    }
+}
+
+.sorters-wrapper {
+    &>*:not(:last-child) {
+        margin-right: 24px;
+    }
+}
+
+.sort-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .left-section {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.sort-header-info {
+    padding-right: 24px;
+    border-right: solid 1px #d9d9d9;
+}
+
+.sort-header-info,
+.sort-by {
+    font-size: 24px;
+}
+
+.sort-by {
+    display: block;
+    color: #a3a3a3;
+    padding: 22px 22px 22px 22px;
+}
+
+.paginations .pagination-item:first-child {
+    margin-right: 12px;
+}
