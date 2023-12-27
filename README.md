@@ -1,6 +1,6 @@
 # Frontend coding challenge to apply to aerolab
-[The Coding Challenge](https://aerolab.co/coding-challenge-instructions)
-[The Deployed Project](https://aerolab-coding-challenge-dun.vercel.app/)
+- [The Coding Challenge](https://aerolab.co/coding-challenge-instructions)
+- [The Deployed Project](https://aerolab-coding-challenge-dun.vercel.app/)
 
 ## The stack used
 
