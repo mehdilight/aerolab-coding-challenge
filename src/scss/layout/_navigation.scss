@@ -97,4 +97,10 @@ input.points__selector {
     text-align: center;
     padding: 8px 4px;
     margin-top: 10px;
+    cursor: pointer;
+
+    &:disabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
 }

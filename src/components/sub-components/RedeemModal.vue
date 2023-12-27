@@ -6,6 +6,8 @@ const selectedAmount = ref(null);
 const {addBalance} = usePoints();
 
 const handleAddingBalance = async () => {
+    if (!selectedAmount.value) return;
+
     await addBalance(selectedAmount.value);
 }
 </script>
@@ -31,7 +33,7 @@ const handleAddingBalance = async () => {
                         <label class="points__selector" for="points7500">7500</label>
                     </div>
                 </div>
-                <button type="submit" class="points__button">
+                <button type="submit" class="points__button" :disabled="!selectedAmount">
                     Add Points
                 </button>
             </form>
