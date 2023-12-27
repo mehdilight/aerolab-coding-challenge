@@ -2,11 +2,12 @@ import { ref } from "vue"
 import ky from 'ky';
 import useUser from './useUser';
 import { getAuthHeaders } from '../utils/utils';
+import useFlashMessage from "./useFlashMessage";
 
 export default function useRedeem() {
     const isProccessing = ref(false);
     const { refetchUser } = useUser();
-
+    const {errorMessage, successMessage} = useFlashMessage();
 
     const redeem = async (productId) => {
         isProccessing.value = true;
@@ -21,8 +22,9 @@ export default function useRedeem() {
             });
 
             await refetchUser();
+            successMessage('The product redeemed successfully');
         } catch (error) {
-            // handle error
+            errorMessage('There was a problem with the transaction');
         } finally {
             isProccessing.value = false;
         }

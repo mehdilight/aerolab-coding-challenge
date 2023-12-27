@@ -2,6 +2,7 @@ import { computed, ref } from "vue";
 import ky from 'ky';
 import { SORT_BY } from "./sortByTypes";
 import { getAuthHeaders, paginate } from "../utils/utils";
+import useFlashMessage from "./useFlashMessage";
 
 const isProductsLoading = ref(false);
 const fetchedProducts = ref([]);
@@ -42,6 +43,8 @@ const numberOfPages = computed(() => {
 })
 
 export default function useProducts() {
+  const { errorMessage } = useFlashMessage();
+
   const loadProducts = async () => {
     const response = ky.get('https://coding-challenge-api.aerolab.co/products', {
       headers: {
@@ -58,7 +61,8 @@ export default function useProducts() {
     try {
       fetchedProducts.value = await loadProducts();
     } catch (error) {
-      // handle errors
+      // do some front logging if nessassary
+      errorMessage('error occurred while loading products');
     } finally {
       isProductsLoading.value = false;
     }
