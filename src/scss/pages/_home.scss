@@ -1,13 +1,18 @@
 .hero {
     background-image: url("/assets/header-x2.png");
     padding: 284px 0 48px;
-    background-position: top left;
     background-size: cover;
     margin-bottom: 65px;
-
+    background-position: right;
+    text-align: center;
     &__heading {
         font-size: 64px;
         color: white;
+    }
+
+    @include desktop {
+        background-position: top left;
+        text-align: left;
     }
 }
 
