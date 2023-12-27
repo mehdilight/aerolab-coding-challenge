@@ -29,6 +29,7 @@
 }
 
 .sorters-wrapper {
+    display: flex;
     &>*:not(:last-child) {
         margin-right: 24px;
     }
@@ -71,7 +72,19 @@
 .products-grid {
     display: grid;
     gap: 24px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+
+    @include tablet {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    @include desktop {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include largeDesktop {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
 }
 
 .product-card {
