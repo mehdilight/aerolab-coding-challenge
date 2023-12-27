@@ -4,6 +4,7 @@ import useProducts from '../../composables/useProducts';
 
 const { sortBy, updateSort, next, previous, currentPage, numberOfPages } = useProducts();
 </script>
+
 <template>
     <header class="sort-header">
         <div class="left-section">
@@ -47,3 +48,4 @@ const { sortBy, updateSort, next, previous, currentPage, numberOfPages } = usePr
         </div>
     </header>
 </template>
+
