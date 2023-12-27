@@ -25,7 +25,7 @@ const pointsNeeded = computed(() => {
 </script>
 <template>
   <section class="product-card">
-    <div class="product-card__info" v-if="!isAbleToRedeemTheProduct">
+    <div class="product-card__info" v-if="!isAbleToRedeemTheProduct && !isLoadingUser">
       <span>
         You need {{ pointsNeeded }}
       </span>
