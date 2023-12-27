@@ -2,14 +2,14 @@
 import { SORT_BY } from '../../composables/sortByTypes';
 import useProducts from '../../composables/useProducts';
 
-const { sortBy, updateSort, next, previous, currentPage, numberOfPages } = useProducts();
+const { sortBy, updateSort, next, previous, currentPage, numberOfPages, totalLengthOfProducts, passedProducts } = useProducts();
 </script>
 
 <template>
     <header class="sort-header">
         <div class="left-section">
             <span class="sort-header-info">
-                16 of 32 products
+                {{ passedProducts }} of {{ totalLengthOfProducts }} products
             </span>
             <span class="sort-by">
                 Sort By:

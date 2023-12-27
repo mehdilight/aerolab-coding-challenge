@@ -42,6 +42,15 @@ const numberOfPages = computed(() => {
   return Math.ceil(fetchedProducts.value.length / 13);
 })
 
+const totalLengthOfProducts = computed(() => {
+  return fetchedProducts.value.length;
+});
+
+const passedProducts = computed(() => {
+  let result = currentPage.value * 13;
+  return result > totalLengthOfProducts.value ? totalLengthOfProducts.value : result;
+})
+
 export default function useProducts() {
   const { errorMessage } = useFlashMessage();
 
@@ -84,6 +93,10 @@ export default function useProducts() {
     updateSort,
     next,
     previous,
-    numberOfPages
+    numberOfPages,
+    totalLengthOfProducts,
+    passedProducts
   }
 }
+
+// 
